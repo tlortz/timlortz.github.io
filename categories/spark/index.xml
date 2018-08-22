@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on Tim Lortz</title>
+    <link>/categories/spark/</link>
+    <description>Recent content in Spark on Tim Lortz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setting Up Apache Spark 2.3 with Jupyter on Mac OSX</title>
+      <link>/2018/08/13/spark-jupyter-on-mac/</link>
+      <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/08/13/spark-jupyter-on-mac/</guid>
+      <description>Through promotional materials from Databricks earlier this year, I had heard about the upcoming Spark 2.3 release. I sat in a demo and was really excited to try out new features like Continuous Processing and MLlib in Structured Streaming. But my customer work is all done in Spark 2.2 at the moment, and none of my side projects really required distributed processing at scale. Then I went to Spark Summit earlier this summer, and after seeing more Spark 2.</description>
+    </item>
+    
+  </channel>
+</rss>

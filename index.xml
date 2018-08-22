@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tim Lortz</title>
+    <link>/</link>
+    <description>Recent content on Tim Lortz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/about/</link>
+      <pubDate>Sat, 18 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I&amp;rsquo;m a data scientist employed by a small firm supporting government and commercial clients in the Maryland / Washington, D.C. region. My academic background is in Industrial Engineering and Operations Research. Since finishing my Ph.D. in 2008 (focused on optimization theory for decidedly small data problems), I&amp;rsquo;ve keenly tracked the Big Data / Data Science explosion, and gradually found myself drawn into it both professionally and as a hobbyist. This blog holds some of the tricks, observations and questions I accumulate.</description>
+    </item>
+    
+    <item>
+      <title>Setting Up Apache Spark 2.3 with Jupyter on Mac OSX</title>
+      <link>/2018/08/13/spark-jupyter-on-mac/</link>
+      <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/08/13/spark-jupyter-on-mac/</guid>
+      <description>Through promotional materials from Databricks earlier this year, I had heard about the upcoming Spark 2.3 release. I sat in a demo and was really excited to try out new features like Continuous Processing and MLlib in Structured Streaming. But my customer work is all done in Spark 2.2 at the moment, and none of my side projects really required distributed processing at scale. Then I went to Spark Summit earlier this summer, and after seeing more Spark 2.</description>
+    </item>
+    
+  </channel>
+</rss>
