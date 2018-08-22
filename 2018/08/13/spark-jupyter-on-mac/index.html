@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Setting Up Apache Spark 2.3 with Jupyter on Mac OSX  &middot; Tim Lortz</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="Mostly making magic to make magic with data, sometimes making magic with data" />
+
+<meta name="keywords" content="Spark, Jupyter, ">
+
+
+<meta property="og:title" content="Setting Up Apache Spark 2.3 with Jupyter on Mac OSX  &middot; Tim Lortz ">
+<meta property="og:site_name" content="Tim Lortz"/>
+<meta property="og:url" content="/2018/08/13/spark-jupyter-on-mac/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2018-08-13T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-08-13T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="Spark">
+    
+<meta property="og:article:tag" content="Jupyter">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Setting Up Apache Spark 2.3 with Jupyter on Mac OSX" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="/2018/08/13/spark-jupyter-on-mac/" />
+<meta name="twitter:domain" content="/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Setting Up Apache Spark 2.3 with Jupyter on Mac OSX",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-08-13",
+    "description": "",
+    "wordCount": 1051
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="/2018/08/13/spark-jupyter-on-mac/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.47.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="/css/bootswatch/default/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:paper]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+              
+                <a href="/about/" >
+                  
+                  About
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+                <a href="https://github.com/tlortz" >
+                  
+                  GitHub
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+                <a href="https://www.linkedin.com/in/tim-lortz-08925937/" >
+                  
+                  LinkedIn
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+                <a href="https://twitter.com/timlortz" >
+                  
+                  Twitter
+                </a>
+              
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="title-metas text-center">
+
+    <h1>Setting Up Apache Spark 2.3 with Jupyter on Mac OSX
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-08-13">13 Aug, 2018</time>
+</small>
+
+
+  <small>
+    &middot; by Tim Lortz
+  
+  &middot; Read in about 5 min
+  &middot; (1051 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Setting%20Up%20Apache%20Spark%202.3%20with%20Jupyter%20on%20Mac%20OSX&amp;url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f&amp;title=Setting%20Up%20Apache%20Spark%202.3%20with%20Jupyter%20on%20Mac%20OSX" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Setting%20Up%20Apache%20Spark%202.3%20with%20Jupyter%20on%20Mac%20OSX&amp;body=Check out this site %2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="/tags/spark" class="label label-primary">Spark</a>
+  
+  <a href="/tags/jupyter" class="label label-primary">Jupyter</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+
+      <div class="content">
+  <!-- ![](../../static/img/apache_spark.png) -->
+<center>
+<img src = "/img/apache_spark.png"></img>
+</center>
+<p>Through promotional materials from Databricks earlier this year, I had heard about the upcoming Spark 2.3 release. I sat in a demo and was really excited to try out new features like Continuous Processing and MLlib in Structured Streaming. But my customer work is all done in Spark 2.2 at the moment, and none of my side projects really required distributed processing at scale. Then I went to Spark Summit earlier this summer, and after seeing more Spark 2.3 in action, I decided it was time to get my hands on it.</p>
+<p>I went through the process of installing Spark 2.1 on my MacBook last year … and completely forgot how I did it. I don’t know about you, but the thought of having to find and untangle multiple versions of configuration files and environment variables is usually enough to deter me from starting a project like upgrading Spark. And Spark has a lot of dependencies, too. But it turned out to not be that bad. The rest of this post will walk through how I did it.</p>
+<div id="preliminaries" class="section level1">
+<h1>Preliminaries</h1>
+<div id="hdfs" class="section level2">
+<h2>HDFS</h2>
+<center>
+<img src = "/img/hadoop-logo.png" ></img>
+</center>
+<p>Although you can use Spark in Standalone mode, connecting it to Hadoop (HDFS) is important for a couple of reasons:</p>
+<ul>
+<li>Spark file input &amp; output functions are generally designed to operate on HDFS, especially for the highly efficient Parquet file format</li>
+<li>Although Spark jobs are designed to execute entirely in memory, there might not be sufficient memory to do so, in which case Spark will temporarily cache some data to disk. HDFS is a good choice for that storage</li>
+</ul>
+<p>That being said, HDFS stands for Hadoop <em>Distributed</em> File System, and there’s nothing distributed about storing data on a laptop, so HDFS is probably overkill for our purposes. Regardless, I installed it in order to make full use of Spark, following a great set of <a href="https://dtflaneur.wordpress.com/2015/10/02/installing-hadoop-on-mac-osx-el-capitan/">instructions</a>.</p>
+</div>
+<div id="scala" class="section level2">
+<h2>Scala</h2>
+<center>
+<img src = "/img/scala-lang.jpeg" style="width:10%"></img>
+</center>
+<p>Spark is written in Scala, so Scala is the first language of Spark. You will need Scala installed, which is easiest through homebrew on a Mac. Although the latest version of Scala is 2.12, Spark only supports Scala up to 2.11, so you’ll need to hard-wire your Scala installation:</p>
+<pre class="bash"><code>brew install scala@2.11</code></pre>
+</div>
+<div id="pythonjupyter" class="section level2">
+<h2>Python/Jupyter</h2>
+<center>
+<img src = "/img/jupyter-logo.png"></img>
+</center>
+<p>For data scientists, Python is typically a second language if not the first, and thankfully Spark has a Python API (PySpark) that has nearly caught up with the Scala API over time. What’s great about PySpark is that you can switch between Spark objects and native Python objects within the same script or notebook, and leverage all the usual Python libraries you love. I’m most interested in the Anaconda distribution of Python, so I’ll assume that we’re working with Python 3.6 in Anaconda. You certainly don’t <em>have</em> to use the Anaconda distribution, but <a href="http://jupyter.org/install">it is strongly encouraged</a> for integration with Jupyter notebook/lab later. Python installation is a sensitive topic that is best left to the reader ;)</p>
+</div>
+</div>
+<div id="spark-installation" class="section level1">
+<h1>Spark Installation</h1>
+<p>There’s <a href="https://medium.com/luckspark/installing-spark-2-3-0-on-macos-high-sierra-276a127b8b85">this approach</a>, but I think it’s easier to install with Homebrew. <a href="https://medium.freecodecamp.org/installing-scala-and-apache-spark-on-mac-os-837ae57d283f">This approach</a> works well, but needs to be adapted for Spark 2.3. Since I already had Spark 2.1 installed, it was enough to go to Terminal and type</p>
+<pre class="bash"><code>brew upgrade apache-spark</code></pre>
+<p>Voila! Now just make sure that your bashrc or bash_profile settings reflect the brew-installed Spark library as the SPARK_HOME variable. In my case, it’s bash_profile:</p>
+<pre class="bash"><code>vim ~/.bash_profile
+export SPARK_HOME&quot;=/usr/local/Cellar/apache-spark/2.3.0/libexec&quot;</code></pre>
+</div>
+<div id="apache-toree-installation" class="section level1">
+<h1>Apache Toree Installation</h1>
+<p><a href="http://toree.apache.org/docs/current/user/quick-start/">Apache Toree</a> has one main goal: provide the foundation for interactive applications to connect and use Apache Spark. While you can do interactive PySpark work in Jupyter without Toree, Toree makes it possible to also access the Scala, R and SQL APIs for Spark just as easily, simply by toggling the choice of kernel when launching the notebook. In developing Spark applications, it’s extremely advantageous to work interactively in a notebook versus submitting jobs in batch mode only, for example to test edge cases, inspect intermediate output, ensure type conversion, etc. The steps I followed to install Toree were:</p>
+<pre class="bash"><code>cd /usr/local/bin
+git clone https://github.com/apache/incubator-toree.git
+cd incubator-toree
+APACHE_SPARK_VERSION=2.3.0 make clean dist
+make release
+pip install dist/toree-pip/toree-0.3.0.dev1.tar.gz
+jupyter toree install --spark_home=/usr/local/Cellar/apache-spark/2.3.0/libexec --interpreters=Scala,PySpark,SparkR,SQL —user</code></pre>
+</div>
+<div id="tying-up-loose-ends" class="section level1">
+<h1>Tying up Loose Ends</h1>
+<div id="pyspark-jupyter-kernel" class="section level2">
+<h2>PySpark Jupyter Kernel</h2>
+<p>People used to Jupyter notebook or Jupyter lab will enjoy the ability to integrate Spark development into their usual workflows. And you can even do it with the Scala API by leveraging the Apache Toree kernels. Although Toree does provide a PySpark kernel as well, I prefer calling PySpark as a package within my usual Python 3.6 kernel. Here’s how I set that up.</p>
+<ol style="list-style-type: decimal">
+<li>Navigate to the kernel.json file associated with the Python 3 Jupyter kernel. In my case, that’s located at ~/anaconda/share/jupyter/kernels/python3</li>
+<li>Add some environmental variables to the end of the kernel so it knows where to look for PySpark:</li>
+</ol>
+<pre class="bash"><code>&quot;env&quot;: {
+    &quot;SPARK_HOME&quot;: &quot;/usr/local/Cellar/apache-spark/2.3.0/libexec&quot;,
+    &quot;SPARK_CONF_DIR&quot;: &quot;/usr/local/Cellar/apache-spark/2.3.0/libexec/conf&quot;,
+    &quot;PYSPARK_PYTHON&quot;: &quot;python&quot;,
+    &quot;PYSPARK_DRIVER_PYTHON&quot;: &quot;python&quot;,
+    &quot;PYTHONSTARTUP&quot;: &quot;/usr/local/Cellar/apache-spark/2.3.0/libexec/python/pyspark/shell.py&quot;,
+    &quot;PYTHONPATH&quot;: &quot;/usr/local/Cellar/apache-spark/2.3.0/libexec/python/lib/py4j-0.10.4-src.zip:/usr/local/Cellar/apache-spark/2.3.0/libexec/python/:&quot;,
+    &quot;PYSPARK_SUBMIT_ARGS&quot;: &quot;--name &#39;PySparkShell&#39; &#39;pyspark-shell&#39;&quot;
+  }</code></pre>
+<p>PySpark should now work within Jupyter notebooks. To access the PySpark API, you’ll need to import the relevant PySpark packages and build a SparkSession object in your running kernel. Here’s a simple way to do that - note that Spark has tons of configuration options that are outside the scope of this post. For those, check out the Apache Spark <a href="https://spark.apache.org/docs/latest/configuration.html">Configuration Guide</a></p>
+<p>A typical PySpark notebook for structured data might start off like this:</p>
+<pre class="python"><code>import pyspark
+from pyspark.sql import SparkSession 
+from pyspark.sql.functions import *
+spark = SparkSession.builder.appName(&quot;myApp&quot;).master(&quot;local[*]&quot;).getOrCreate()
+
+df = spark.read.format(&quot;csv&quot;).option(&quot;header&quot;,&quot;true&quot;).load(pathToCSVFiles)</code></pre>
+</div>
+<div id="scala-jupyter-kernel" class="section level2">
+<h2>Scala Jupyter Kernel</h2>
+<p>Getting the Scala (and R and SQL) kernels to work is a little trickier. I’ve set this up in both Linux and Mac environments and found it to be a consistent pain. Your results might differ, depending on things like where you installed Toree, what user permissions you enabled, how you installed Scala, etc. The main issue I had was that Toree installed the kernels in a location that Jupyter does not scan when launching a notebook from my default environment. <a href="http://jupyter.readthedocs.io/en/latest/projects/jupyter-directories.html">You have to specify to Jupyter where to look</a>. To rectify this issue, I had to add the following line to my bash_profile:</p>
+<pre class="bash"><code>export JUPYTER_PATH=&quot;/usr/local/share/jupyter:/Users/tim/Library/Jupyter”</code></pre>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Apache Spark is great for making big data feel small, and accessing Spark through a Jupyter notebook can simplify your data science workflow even more. I hope you found this useful; if you have better ways of setting up any part of the environment described above, please let me know!</p>
+</div>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Setting%20Up%20Apache%20Spark%202.3%20with%20Jupyter%20on%20Mac%20OSX&amp;url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f&amp;title=Setting%20Up%20Apache%20Spark%202.3%20with%20Jupyter%20on%20Mac%20OSX" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Setting%20Up%20Apache%20Spark%202.3%20with%20Jupyter%20on%20Mac%20OSX&amp;body=Check out this site %2f2018%2f08%2f13%2fspark-jupyter-on-mac%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="/2018/08/13/spark-jupyter-on-mac/">Setting Up Apache Spark 2.3 with Jupyter on Mac OSX</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/spark">spark</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/jupyter">jupyter</a></li><li><a href="/tags/spark">spark</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/highlight.pack.js"></script>
+<script src="/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+
