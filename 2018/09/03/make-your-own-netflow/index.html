@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Make Your Own Netflow  &middot; Tim Lortz</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="description" />
+
+<meta name="keywords" content="key, words, ">
+
+
+<meta property="og:title" content="Make Your Own Netflow  &middot; Tim Lortz ">
+<meta property="og:site_name" content="Tim Lortz"/>
+<meta property="og:url" content="/2018/09/03/make-your-own-netflow/" />
+<meta property="og:locale" content="en-us">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content="description"/>
+<meta property="og:article:published_time" content="2018-09-03T00:00:00Z" />
+<meta property="og:article:modified_time" content="2018-09-03T00:00:00Z" />
+
+  
+    
+<meta property="og:article:tag" content="key">
+    
+<meta property="og:article:tag" content="words">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Make Your Own Netflow" />
+<meta name="twitter:description" content="description" />
+<meta name="twitter:url" content="/2018/09/03/make-your-own-netflow/" />
+<meta name="twitter:domain" content="/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Make Your Own Netflow",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2018-09-03",
+    "description": "description",
+    "wordCount": 964
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="/2018/09/03/make-your-own-netflow/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.47.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="/css/bootswatch/default/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+  <link rel="stylesheet" href="/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:paper]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="" src="">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+              
+                <a href="/about/" >
+                  
+                  About
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+                <a href="https://github.com/tlortz" >
+                  
+                  GitHub
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+                <a href="https://www.linkedin.com/in/tim-lortz-08925937/" >
+                  
+                  LinkedIn
+                </a>
+              
+            </li>
+            
+            <li class="">
+              
+                <a href="https://twitter.com/timlortz" >
+                  
+                  Twitter
+                </a>
+              
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="title-metas text-center">
+
+    <h1>Make Your Own Netflow
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2018-09-03">3 Sep, 2018</time>
+</small>
+
+
+  <small>
+  &middot; Read in about 5 min
+  &middot; (964 words)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Make%20Your%20Own%20Netflow&amp;url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f&amp;title=Make%20Your%20Own%20Netflow" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Make%20Your%20Own%20Netflow&amp;body=Check out this site %2f2018%2f09%2f03%2fmake-your-own-netflow%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="/tags/cybersecurity" class="label label-primary">cybersecurity</a>
+  
+  <a href="/tags/data-sources" class="label label-primary">data sources</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+
+      <div class="content">
+  
+
+<h1 id="what-is-netflow-and-why-would-i-want-it">What is Netflow, and Why Would I Want It?</h1>
+
+<p>Netflow is a network traffic summary mechanism originally developed by Cisco for the purpose of monitoring network traffic loads for billing. In its simplest form, Netflow summarizes all of the &ldquo;flows&rdquo; - roughly the equivalent of a TCP/IP session - seen at a router and summarizes them by source and destination address and port and the layer 3 or 4 protocol. The summary metrics typically count both packets and bytes contained. Unlike PCAP, Netflow does not contain any content, and is not nearly as voluminous as unsampled PCAP, but it can still be massive when collected even on a moderate-sized network.</p>
+
+<p>Netflow serves several important network and security monitoring purposes. It can tell all the IP addresses present on the network and which ports and protocols they&rsquo;re using. Expanded versions of Netflow also expose the network interfaces and subnets in use. And the byte counts can give estimates of network traffic loads at specific points in the network.</p>
+
+<p>For a data scientist serving a network or security operations center, Netflow is a fanstastic source of data that lends itself especially well to graph analytics and time series modeling.</p>
+
+<h1 id="where-can-i-get-netflow">Where can I get Netflow?</h1>
+
+<p>I&rsquo;ve supported a few projects where we anticipated getting Netflow data, and wanted to get our data pipeline and analytic tool stack in place ahead of time. But finding decent Netflow samples has turned out to be pretty hard. I suppose this makes sense; if an organization made its Netflow data public, it could pose a significant security risk. It gives the layout of the active addresses, ports and protocols on your network, which is like a poor man&rsquo;s version of open nmap against your network, which any good system administrator or SOC operator would not allow. So from this author&rsquo;s vantage point, there isn&rsquo;t much out good Netflow data on the web.</p>
+
+<p>However, there are a few ways to get your own. The rest of this post will walk through one of the easiest and safest ways to do it.</p>
+
+<h1 id="setting-up-a-netflow-generator">Setting Up a Netflow Generator</h1>
+
+<p>For our purposes, a Netflow data pipeline has three basic components: the <strong>Netflow daemon</strong> running on the router, an <strong>nfcapd</strong> process elsewhere listening for and configured to receive the raw Netflow datagrams, and an <strong>nfdump</strong> batch job that converts the raw Netflow binaries from nfcapd into human-readable .csv files. However, because we don&rsquo;t want to share our real Netflow with the world, we are going to use a sythetic Netflow generator that will replace the Netflow daemon. This generator comes complements of the <a href="https://github.com/nerdalert/nflow-generator">nflow-generator project on Github</a>.</p>
+
+<h2 id="netflow-generator">Netflow Generator</h2>
+
+<p>The project&rsquo;s installation instructions list two possible methods of use: via Docker or by local installation and execution. Here we will go through the latter, which first requires installing the Go language on your machine if not already installed. It can be downloaded and installed from <a href="https://golang.org/dl/">https://golang.org/dl/</a>, after which, you might need to update your PATH variable (e.g. in your .bashrc or .bash_profile file) by adding /usr/local/go/bin to it. Then, from the command line,</p>
+
+<pre><code class="language-bash">go get -u golang.org/x/crypto/ssh/terminal
+go get -u golang.org/x/sys/unix
+</code></pre>
+
+<p>Once you have Go installed, you can proceed to install nflow-generator in a directory of your choosing:</p>
+
+<pre><code class="language-bash">git clone https://github.com/nerdalert/nflow-generator.git
+cd nflow-generator
+go build
+</code></pre>
+
+<p>We will come back shortly to actually run the generator once we have the receiving tools in place.</p>
+
+<h2 id="nfcapd">nfcapd</h2>
+
+<p>Both nfcapd and nfdump must be loaded onto your system from a repository. On a Mac system, this is as easy as</p>
+
+<pre><code class="language-bash">brew install nfdump
+</code></pre>
+
+<p>Once that&rsquo;s done, you need to turn on the nfcapd processor to listen for Netflow on a specific port, and tell it where and how to write the output. I opted to use a subdirectory structure of year/month/day/hour, specified by the -S 2 option, and to bind on host 127.0.0.1 using the -b flag, but otherwise left the default settings intact.</p>
+
+<pre><code class="language-bash">nfcapd -l ~/Data/netflow/nfcapd -S 2 -b 127.0.0.1
+</code></pre>
+
+<p>Now, with nfcapd listening, we can turn on the Netflow generator, going back to the directory where we&rsquo;ve installed it. In a Linux or Mac environment, if you&rsquo;re running both the generator and nfcapd on the same machine, just kick off the two processes in separate terminal windows.</p>
+
+<pre><code class="language-bash">./nflow-generator -t 127.0.0.1 -p 9995
+</code></pre>
+
+<p>When you&rsquo;re done collecting the Netflow samples, you can just kill the generator process in the terminal window, and do the same for nfcapd.</p>
+
+<h2 id="nfdump">nfdump</h2>
+
+<p>In a production setting, nfdump works well as a crontab job on the same machine as nfcapd set at regular intervals, typically at least five minutes apart. But the Netflow generator we&rsquo;re using is not going to generate so much traffic that you can&rsquo;t read several hours of it into a standard Python or R session, so you can do something as simple as run nfdump on an hour or two of the generated Netflow.</p>
+
+<p>As I mentioned before, there are many options for formatting the output files. You can read all about them at the <a href="https://www.mankier.com/1/nfdump">man page</a>. Here, we&rsquo;ll use the default format in .csv files, with no reporting or summary statistics added (only source/dest IP and ports, plus protocol, and the byte and packet counts, for each flow).</p>
+
+<pre><code class="language-bash">nfdump -r nfcapd/2018/06/06/17/nfcapd.201806061738 -o csv  &gt; nfdump/201806061738.csv 
+#for one file
+nfdump -R nfcapd/2018/06/06 -o csv  &gt; nfdump/20180606.csv 
+#for all files; -R is for recursive reads
+</code></pre>
+
+<h1 id="next-steps">Next Steps</h1>
+
+<p>Conducting analysis on Netflow is great fun, but beyond the scope of this post. I will say that I&rsquo;ve found Apache Spark to be a natural choice for doing any analysis on Netflow at scale. I also highly recommend Michael Collins&rsquo; book, <a href="https://www.amazon.com/Network-Security-Through-Data-Analysis/dp/1449357903">Network Security Through Data Analysis</a>, which devotes an entire chapter to the topic.</p>
+
+<p>I hope this was useful for getting started on Netflow setup and analysis. I&rsquo;d love any feedback you have!</p>
+
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Make%20Your%20Own%20Netflow&amp;url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2018%2f09%2f03%2fmake-your-own-netflow%2f&amp;title=Make%20Your%20Own%20Netflow" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Make%20Your%20Own%20Netflow&amp;body=Check out this site %2f2018%2f09%2f03%2fmake-your-own-netflow%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="/2018/08/13/spark-jupyter-on-mac/" title="Setting Up Apache Spark 2.3 with Jupyter on Mac OSX">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Latest Posts</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="/2018/09/03/make-your-own-netflow/">Make Your Own Netflow</a>
+          </li>
+        
+          <li>
+          <a href="/2018/08/13/spark-jupyter-on-mac/">Setting Up Apache Spark 2.3 with Jupyter on Mac OSX</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>category</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/categories/cybersecurity">cybersecurity</a></li><li><a href="/categories/data-sources">data-sources</a></li><li><a href="/categories/spark">spark</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/cybersecurity">cybersecurity</a></li><li><a href="/tags/data-sources">data-sources</a></li><li><a href="/tags/jupyter">jupyter</a></li><li><a href="/tags/spark">spark</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">back to top</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+</small>
+</div>
+
+
+    
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="//s3.amazonaws.com/mailmunch/static/site.js" id="mailmunch-script" data-mailmunch-site-id="" async="async"></script>
+
+
+
+<script src="//load.sumome.com/" data-sumo-site-id="" async="async"></script>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/highlight.pack.js"></script>
+<script src="/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var ENABLE_POPOVER = "", 
+EXPIRE_COOKIE = "", 
+SHOW_MODAL_TIMEOUT = "", 
+MOUSE_LEAVE = "", 
+MODAL_SIZE = "", 
+POST_URL = "", 
+SIGNUP_HEADER = "",
+HEADER_IMAGE = "",
+IMG_DESCRIPTION = "",
+SIGNUP_TEXT = "",
+INPUT_PLACEHOLDER = "",
+SUBMIT_BUTTON = "",
+SUCCESS_MESSAGE = "",
+ERROR_MESSAGE = "",
+OPTIN = "",
+COOKIE_NAME = "",
+CONTENTLANGUAGE = ""; 
+</script>
+
+
+
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax//config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+
