@@ -11,6 +11,24 @@
     
     
     <item>
+      <title>Cybersecurity</title>
+      <link>/categories/cybersecurity/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/cybersecurity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Sources</title>
+      <link>/categories/data-sources/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/data-sources/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Spark</title>
       <link>/categories/spark/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>

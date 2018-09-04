@@ -6,10 +6,19 @@
     <description>Recent content on Tim Lortz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Make Your Own Netflow</title>
+      <link>/2018/09/03/make-your-own-netflow/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/09/03/make-your-own-netflow/</guid>
+      <description>What is Netflow, and Why Would I Want It? Netflow is a network traffic summary mechanism originally developed by Cisco for the purpose of monitoring network traffic loads for billing. In its simplest form, Netflow summarizes all of the &amp;ldquo;flows&amp;rdquo; - roughly the equivalent of a TCP/IP session - seen at a router and summarizes them by source and destination address and port and the layer 3 or 4 protocol.</description>
+    </item>
     
     <item>
       <title></title>
