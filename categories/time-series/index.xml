@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Time Series on Tim Lortz</title>
+    <link>/categories/time-series/</link>
+    <description>Recent content in Time Series on Tim Lortz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 08 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/time-series/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Comparing Performance of Autofitting Time Series Models</title>
+      <link>/2019/02/08/comparing-performance-of-autofitting-time-series-models/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/02/08/comparing-performance-of-autofitting-time-series-models/</guid>
+      <description>Overview In several recent client and personal projects, I’ve found a need to quickly create robust real-time anomaly detection for time series data. In the typical use case, the goal is to fit a model to as much historical data as possible, then use that model to predict future time series values. When the predictions are compared against new observed data, if the observed data appears to fall too far away from the predicted values, it is flagged for follow-on analysis.</description>
+    </item>
+    
+  </channel>
+</rss>

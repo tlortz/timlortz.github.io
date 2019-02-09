@@ -39,11 +39,47 @@
     </item>
     
     <item>
+      <title>Machine Learning</title>
+      <link>/tags/machine-learning/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Models</title>
+      <link>/tags/models/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/models/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Spark</title>
       <link>/tags/spark/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series</title>
+      <link>/tags/time-series/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/time-series/</guid>
       <description></description>
     </item>
     
